@@ -56,6 +56,10 @@ router.put('/:id', (req, res) => {
 
   // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
   User.update(req.body, {
+
+    //this is needed for hashing updated passwords: (reference User.js > hooks)
+    individualHooks: true,
+
     where: {
       id: req.params.id
     }
