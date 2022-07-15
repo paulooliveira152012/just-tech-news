@@ -1,5 +1,9 @@
+//importing User.js
 const User = require('./User');
-const Post = require('./Post')
+//importing Post.js
+const Post = require('./Post');
+//importing Vote.js
+const Vote = require('./Vote');
 
 
 //define one-to-many relationship (one user can have many notes, but never one note belong to many users)
@@ -11,6 +15,34 @@ Post.belongsTo(User, {
     foreignKey: 'user_id',
   });
 
+//Associate User and Post to one another
+User.belongsToMany(Post, {
+    through: Vote,
+    as: 'voted_posts',
+    foreignKey: 'user_id'
+});
+
+Post.belongsToMany(User, {
+    through: Vote,
+    as: 'voted_posts',
+    foreignKey: 'post_id'
+  });
+
+  Vote.belongsTo(User, {
+    foreignKey: 'user_id'
+  });
+  
+  Vote.belongsTo(Post, {
+    foreignKey: 'post_id'
+  });
+  
+  User.hasMany(Vote, {
+    foreignKey: 'user_id'
+  });
+  
+  Post.hasMany(Vote, {
+    foreignKey: 'post_id'
+  });
 
 
-module.exports = { User, Post };
+module.exports = { User, Post, Vote };
