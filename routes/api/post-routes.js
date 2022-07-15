@@ -108,7 +108,7 @@ router.put('/upvote', (req, res) => {
                   ]
                 ]
               })
-              .then(dbPostData => res.jsoon(dbPostData))
+              .then(dbPostData => res.json(dbPostData))
               .catch(err => {
                 console.log(err);
                 res.status(400).json(err)
