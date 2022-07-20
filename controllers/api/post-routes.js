@@ -2,7 +2,6 @@
 //we're also including the User route so we know who the notes belong to
 const router = require('express').Router();
 const { Post, User, Vote, Comment } = require("../../models");
-const { create } = require('../../models/Post');
 // const Vote = require('../../models/Vote');
 //importing connection to database
 const sequelize = require('../../config/connection')
@@ -160,16 +159,3 @@ router.put('/upvote', (req, res) => {
   });
 
   module.exports = router;
-
-
-
-
-//     // PUT /api/posts/upvote
-// router.put('/upvote', (req, res) => {
-//     Vote.create({
-//         user_id: req.body.user_id,
-//         post_id: req.body.post_id
-//       })
-//         .then(dbPostData => res.json(dbPostData))
-//         .catch(err => res.json(err));
-// });

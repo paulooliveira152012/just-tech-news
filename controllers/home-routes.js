@@ -1,12 +1,11 @@
 //importing modules
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
-
-
+const { Post, User, Comment, Vote } = require('../models');
 //setting up the main homepage route:
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
+  console.log('======================');
     Post.findAll({
       attributes: [
         'id',
